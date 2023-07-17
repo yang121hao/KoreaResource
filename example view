@@ -1,0 +1,70 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:randomkuji/styles/randomkuji_assets_icon.dart';
+import 'package:randomkuji/widget/stack_child.dart';
+import 'inca_image.dart';
+
+class Example extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _Example();
+  }
+}
+
+class _Example extends State<Example> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(56.h),
+        child: Container(
+          color: Colors.white,
+          child: LayoutBuilder(
+            builder: (_, constraints) {
+              return Stack(
+                alignment: Alignment.center,
+                children: [
+                  StackChild.relative(
+                    top: 20.h,
+                    start: 24,
+                    width: 12,
+                    height: 16,
+                    constraints: constraints,
+                    designSize: const Size(360, 56),
+                    widthUsingHeight: true,
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    builder: (_) => IncaImage(
+                        width: 12,
+                        height: 12,
+                        imageUrl: null,
+                        color: Colors.black,
+                        defaultUrl: randomkujiAssets.back),
+                  ),
+                  StackChild.relative(
+                    height: 24.h,
+                    top: 20.h,
+                    constraints: constraints,
+                    designSize: const Size(360, 56),
+                    builder: (_) => AutoText(
+                      text: "example",
+                      style: const TextStyle(
+                          color: Color(0xFF000000),
+                          fontWeight: FontWeight.w500),
+                      align: Alignment.center,
+                      removeHtml: true,
+                      fontSizeSp: 16,
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+      ),
+      body: IncaImage(imgurl:"xxx")
+  
+    );
+  }
+}
