@@ -22,7 +22,7 @@ class _NewPeoeleView extends State<NewPeoeleView> {
   @override
   void initState() {
     super.initState();
-    // context.read<NewPeopleBloc>().get(context);
+
   }
 
   @override
@@ -55,26 +55,6 @@ class _NewPeoeleView extends State<NewPeoeleView> {
                                   alignment: Alignment.center,
                                   children: [
                                     StackChild.relative(
-                                        top: 12,
-                                        start: 12,
-                                        width: 24,
-                                        height: 24,
-                                        constraints: constraints,
-                                        designSize: const Size(360, 47),
-                                        widthUsingHeight: true,
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        builder: (_) =>
-                                            IncaImage(
-                                          imageUrl: null,
-                                          width: 24,
-                                          height: 24,
-                                          defaultUrl:
-                                          StarBoxAssets.back,
-                                          color: Colors.black,
-                                        )),
-                                    StackChild.relative(
                                       top: 12.h,
                                       bottom: 12.h,
                                       constraints: constraints,
@@ -95,16 +75,13 @@ class _NewPeoeleView extends State<NewPeoeleView> {
                           ),
                         ),
                       ),
-                      body:Scaffold(
-
- IncaImage(
-                imageUrl:"http://immini.xingmanghe.com/static/index/news_per.png",
-                prefix: IncaImagePrefix.hour,
-                fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-              ),
-)
+                      body: IncaImage(
+                        imageUrl:"http://immini.xingmanghe.com/static/index/news_per.png",
+                        prefix: IncaImagePrefix.hour,
+                        fit: BoxFit.cover,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height,
+                      ),
                     )) // child: SliderMe
             ));
       },
