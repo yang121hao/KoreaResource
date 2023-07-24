@@ -1,0 +1,54 @@
+void showImageOverlay(OverlayEntry? overlayEntry) {
+    OverlayState overlayState = Overlay.of(context)!;
+    List<Map<String, dynamic>?> banners;
+
+    overlayEntry = OverlayEntry(
+      builder: (context) => Stack(
+        children: [
+          Positioned.fill(
+            child: GestureDetector(
+              onTap: () async {
+                String? alarmLinkUrl = banners.first!["alarmLinkUrl"];
+                await ProductTypeExtension.parse("T").launch(
+                    context: context,
+                    client: RandomBoxClient(Dio()),
+                    productId: int.parse(alarmLinkUrl),
+                );
+                overlayEntry?.remove();
+              },
+              child: Container(
+                color: Colors.black.withOpacity(0.7),
+                child: Center(
+                  child: Image.network(
+                    "http://product.xingmanghe.com/banner/30/kjhj.png?20230713071849",
+                  ),
+                  // 替换成你的图片路径
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 155.h,
+            right: 0.w,
+            child: GestureDetector(
+              onTap: () {
+                // 点击关闭按钮时只关闭弹窗
+                overlayEntry?.remove();
+              },
+              child: Container(
+                margin: EdgeInsets.all(16.0),
+                child: Image.network(
+                  "http://immini.xingmanghe.com/static/index/close_index.png",
+                  width: 35.w,
+                  height: 35.h,
+                ),
+                // 替换成你的关闭按钮图片路径
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    overlayState.insert(overlayEntry!); // 将弹窗插入到Overlay中
+  }
